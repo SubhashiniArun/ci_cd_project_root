@@ -28,18 +28,18 @@ jobs:
     
     - name: Build and push flask_ci_cd
       run: |
-        docker buildx build -f ./flask_ci_cd/Dockerfile -t ${IMAGE_MAIN}:latest ./flask_ci_cd
-        docker push ${IMAGE_MAIN}:latest
+        docker build -f ./flask_ci_cd/Dockerfile -t devsubha/flask_ci_cd:latest ./flask_ci_cd
+        docker push devsubha/flask_ci_cd:latest
 
     - name: Build and push flask_service_ci_cd
       run: |
-        docker buildx build -f ./flask_service_ci_cd/Dockerfile -t ${IMAGE_SERVICE}:latest ./flask_service_ci_cd
-        docker push ${IMAGE_SERVICE}:latest
+        docker build -f ./flask_service_ci_cd/Dockerfile -t devsubha/flask_service_ci_cd:latest ./flask_service_ci_cd
+        docker push devsubha/flask_service_ci_cd:latest
 
-    - name: Set up kubectl
-      uses: azure/setup-kubectl@v3
-      with:
-        version: v1.29.0
+    # - name: Set up kubectl
+    #   uses: azure/setup-kubectl@v3
+    #   with:
+    #     version: v1.29.0
 
     # - name: Authenticate with Kubernetes
     #   run: |
