@@ -1,0 +1,134 @@
+name: Flask CI/CD Pipeline
+
+# Define when the workflow is triggered (on push to the main branch or PRs)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # 1. Run tests job
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          source venv/bin/activate
+          pytest tests/
+
+  # 2. Deploy to Heroku job
+  deploy:
+    needs: test  # Make sure the tests pass before deploying
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: Login to Heroku
+        uses: akshnz/heroku-login-action@v1
+        with:
+          email: ${{ secrets.HEROKU_EMAIL }}
+          api_key: ${{ secrets.HEROKU_API_KEY }}
+
+      - name: Deploy to Heroku
+        run: |
+          git remote add heroku https://git@heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+          git push heroku main
+
+# name: Flask CI/CD Pipeline
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
+
+# jobs:
+#   tests:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: '3.8'
+
+#       - name: Install Dependencies
+#         run: |
+#           python -m venv venv
+#           source venv/bin/activate
+#           pip install -r requirements.txt
+
+#       - name: Run tests
+#         run: |
+#           source venv/bin/activate
+#           pytests tests/
+
+# deploy:
+#   needs: test
+#   runs-on: ubuntu-latest
+#   environment: production
+
+#   steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v2
+
+#     - name: Set up Python
+#       uses: actions/setup-python@v2
+#       with:
+#         python-version: '3.8'
+
+#     - name: Install dependencies
+#       run: |
+#         python -m venv venv
+#         source venv/bin/activate
+#         pip install -r requirements.txt
+
+#     - name: Login to Heroku
+#       uses: akshnz/heroku-login-action@v1
+#       with:
+#         email: ${{ secrets.HEROKU_EMAIL }}
+#         api_key: ${{ secrets.HEROKU_API_KEY }}
+
+#     - name: Deploy to Heroku
+#       run: |
+#         git remote add heroku https://git@heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+#         git push heroku main
+
+

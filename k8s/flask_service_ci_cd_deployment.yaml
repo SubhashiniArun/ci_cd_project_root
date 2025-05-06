@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask_service_ci_cd
+  namespace: app-microservices-rabbitmq-ci/cd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask_service_ci_cd
+  template:
+    metadata:
+      labels:
+        app: flask_service_ci_cd
+    spec:
+      containers:
+      - name: flask_service_ci_cd
+        image: devsubha/flask_service_ci_cd:latest
+        env:
+        - name: RABBITMQ_HOST
+          value: rabbitmq
