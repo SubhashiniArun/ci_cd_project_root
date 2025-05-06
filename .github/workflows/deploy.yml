@@ -29,12 +29,12 @@ jobs:
     - name: Build and push flask_ci_cd
       run: |
         docker buildx build -f ./flask_ci_cd/Dockerfile -t ${IMAGE_MAIN}:latest ./flask_ci_cd
-        docker push ${REGISTRY}/${IMAGE_MAIN}:latest
+        docker push ${IMAGE_MAIN}:latest
 
     - name: Build and push flask_service_ci_cd
       run: |
         docker buildx build -f ./flask_service_ci_cd/Dockerfile -t ${IMAGE_SERVICE}:latest ./flask_service_ci_cd
-        docker push ${REGISTRY}/${IMAGE_SERVICE}:latest
+        docker push ${IMAGE_SERVICE}:latest
 
     - name: Set up kubectl
       uses: azure/setup-kubectl@v3
