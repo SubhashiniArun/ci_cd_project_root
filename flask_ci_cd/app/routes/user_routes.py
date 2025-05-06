@@ -9,7 +9,7 @@ from ..models import db, User
 api_blueprint = Blueprint('api', __name__)
 
 
-@api_blueprint.route("/", methods=['GET'])
+@api_blueprint.route("/health", methods=['GET'])
 def home():
     return jsonify(message="Flask API working")
 

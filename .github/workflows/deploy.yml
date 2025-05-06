@@ -17,7 +17,7 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    # This part is to Test the Main app and Service app
+    # # This part is to Test the Main app and Service app
     # - name: Set up Python
     #   uses: actions/setup-python@v4
     #   with:
@@ -63,7 +63,7 @@ jobs:
     #   with:
     #     version: v1.29.0
     
-    # # Use Cloud Providers like AKS, EKS to create a cluster, create service account and get authentication token
+    # # Use Cloud Providers like AKS, EKS to create a cluster, create service account and get authentication token K8S_SERVICE_ACCOUNT_TOKEN, KUBERNETES_SERVER_URL is cluster endpoint
     # - name: Authenticate with Kubernetes
     #   run: |
     #     echo "${{ secrets.K8S_SERVICE_ACCOUNT_TOKEN }}" > $HOME/.kube/token
@@ -80,6 +80,41 @@ jobs:
     # - name: Deploy to Kubernetes
     #   run: |
     #     kubectl apply -f k8s/namespace.yaml
-    #     kubectl apply -f k8s/rabbitmq_deployment.yaml
-    #     kubectl apply -f k8s/flask_ci_cd_deployment.yaml
-    #     kubectl apply -f k8s/flask_service_ci_cd_deployment.yaml
+    #       kubectl apply -f k8s/rabbitmq_deployment.yaml
+    #       kubectl apply -f k8s/rabbitmq_service.yaml
+    #       kubectl apply -f k8s/flask_ci_cd_deployment.yaml
+    #       kubectl apply -f k8s/flask_ci_cd_service.yaml
+    #       kubectl apply -f k8s/flask_service_ci_cd_deployment.yaml
+
+    # Tests to Run post deployment
+    # wait for external IP
+    # - name: wait for main-app external ip
+    #   run: |
+    #     for i in {1..30}; do
+    #       EXTERNAL_IP=$(kubectl get svc flask_ci_cd_service -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    #       if [[ -n "$EXTERNAL_IP" ]]; then
+    #         echo "EXTERNAL_IP=$EXTERNAL_IP" >> $GITHUB_ENV
+    #         echo "FOUND IP: $EXTERNAL_IP"
+    #         break
+    #       fi
+    #       echo " Waiting for EXTERNAL IP...."
+    #       sleep 10
+    #     done
+
+    # - name: Save APP URL to .env file
+    #   run: |
+    #     echo "APP_URL=http://${{ env.EXTERNAL_IP }}" >> flask_ci_cd/.env
+    #     cat .env
+
+    # - name: Set up Python for smoke tests
+    #   uses: actions/setup-python@v4
+    #   with:
+    #     python-version: '3.10'
+
+    # - name: Install requests
+    #   run: pip install requests
+
+    # - name: Run post-deploy tests
+    #   run: python flask_ci_cd/smoke_test.py
+    #   env:
+    #     APP_URL: http://${{ env.EXTERNAL_IP }}
