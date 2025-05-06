@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask_ci_cd
+  name: flask-ci-cd
   namespace: app-microservices-rabbitmq-ci-cd
 spec:
   replicas: 1
@@ -14,7 +14,7 @@ spec:
         app: flask_ci_cd
     spec:
       containers:
-      - name: flask_ci_cd
+      - name: flask-ci-cd
         image: devsubha/flask_ci_cd:latest
         env:
         - name: RABBITMQ_HOST

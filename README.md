@@ -61,6 +61,20 @@ Service in Kubernetes:  Provide network identity (DNS & IP) to set of pods
 +---------------+
 
 
+Local Testing
+
+Using minikube
+
+-> install minikube
+-> mnikube start
+-> minikube start --driver=docker
+-> eval $(minikube docker-env)
+-> build the docker images (refer deploy.yml in .github/workflows for build syntax)
+-> apply all the kubernetes resources using "kubectl apply -f k8s/flask_ci_cd_deployment.yaml"
+-> get the external ip "minikube service flask_ci_cd --url --namespace=app-microservices-rabbitmq-ci-cd"
+-> use this url in the .env file and run the smoke tests
+
+
 
 
 

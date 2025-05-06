@@ -80,11 +80,11 @@ jobs:
     # - name: Deploy to Kubernetes
     #   run: |
     #     kubectl apply -f k8s/namespace.yaml
-    #       kubectl apply -f k8s/rabbitmq_deployment.yaml
-    #       kubectl apply -f k8s/rabbitmq_service.yaml
-    #       kubectl apply -f k8s/flask_ci_cd_deployment.yaml
-    #       kubectl apply -f k8s/flask_ci_cd_service.yaml
-    #       kubectl apply -f k8s/flask_service_ci_cd_deployment.yaml
+    #     kubectl apply -f k8s/rabbitmq_deployment.yaml
+    #     kubectl apply -f k8s/rabbitmq_service.yaml
+    #     kubectl apply -f k8s/flask_ci_cd_deployment.yaml
+    #     kubectl apply -f k8s/flask_ci_cd_service.yaml
+    #     kubectl apply -f k8s/flask_service_ci_cd_deployment.yaml
 
     # Tests to Run post deployment
     # wait for external IP
