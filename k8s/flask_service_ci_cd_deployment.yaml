@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask_service_ci_cd
-  namespace: app-microservices-rabbitmq-ci/cd
+  namespace: app-microservices-rabbitmq-ci-cd
 spec:
   replicas: 1
   selector:
