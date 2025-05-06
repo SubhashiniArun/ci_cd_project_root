@@ -29,7 +29,7 @@ jobs:
     - name: Build and push flask_ci_cd
       run: |
         docker buildx build -f ./flask_ci_cd/Dockerfile -t ${REGISTRY}/${IMAGE_MAIN}:latest ./flask_ci_cd
-        docker push ${REGISTRY}/${IMAGE_MAIN}flask_ci_cd:latest
+        docker push ${REGISTRY}/${IMAGE_MAIN}:latest
 
     - name: Build and push flask_service_ci_cd
       run: |
