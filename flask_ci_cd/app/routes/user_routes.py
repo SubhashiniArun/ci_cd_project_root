@@ -1,17 +1,15 @@
 from flask import Blueprint, jsonify, request
-from sqlalchemy.exc import IntegrityError
 
 from ..services.user_service import fetch_users
 from ..rabbit.send_task import send_task_to_process_data
 
-from ..models import db, User
 
 api_blueprint = Blueprint('api', __name__)
 
 
 @api_blueprint.route("/health", methods=['GET'])
 def home():
-    return jsonify(message="Flask API working")
+    return jsonify({"message":"Flask API working"}), 200
 
 @api_blueprint.route('/users', methods=['GET'])
 def get_users():
