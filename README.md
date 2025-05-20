@@ -61,7 +61,7 @@ Service in Kubernetes:  * Provide network identity (DNS & IP) to set of pods
                         * Expose pods internally (clusterIP) or externally (load balancer)
 
 
-![alt text](https://github.com/SubhashiniArun/ci_cd_project_root/flow.png?raw=true)
+![alt text](https://github.com/SubhashiniArun/ci_cd_project_root/blob/main/flow.png)
 
 
 #### Local testing Kubernetes using minikube
