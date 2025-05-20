@@ -1,4 +1,4 @@
-MicroServices Architecture - CI/CD Project using Flask
+## MicroServices Architecture - CI/CD Project using Flask
 
 This project deploys the [main_app](https://github.com/SubhashiniArun/flask_ci_cd) and [service_app](https://github.com/SubhashiniArun/flask_service_ci_cd) to Kubernetes using Github Actions (CI/CD)
 
