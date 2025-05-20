@@ -12,7 +12,6 @@ This project deploys the [main_app](https://github.com/SubhashiniArun/flask_ci_c
 * `python run.py`
 * check the app's health http://localhost:8000/api/health
 
-
 ##### Service app:
 * navigate to the service app (flask_service_ci_cd)
 * `virtualenv venv`
@@ -28,12 +27,12 @@ This project deploys the [main_app](https://github.com/SubhashiniArun/flask_ci_c
 * Test the microservice functionality by sending GET request to http://localhost:8000/api/users, it will send the request to the service app (http://localhost:5001/serviceapi/users)
 
 * Test the async processing of the app by sending GET request to http://localhost:8000/api/process_user with {ids: []} as JSON body
-* Visualize the queue getting initialized in RabbitMQ (http://localhost:15672)
-* In the Service app's terminal you could see the logs that message is consume from the queue and processed 
+* Visualize the queue "user-task-queue" getting initialized in RabbitMQ (http://localhost:15672)
+* In the Service app's terminal you could see the logs that message is consumed from the queue and processed 
 
 #### Architecture & flow of the Project
-* One main app -> used by client to send the user requests to RabbitMQ queue
-* One service app -> process the user requests in RabbitMQ queue asynchronously.
+* main app -> used by client to send the user requests to RabbitMQ queue
+* service app -> process the user requests in RabbitMQ queue asynchronously.
 
 ###### Docker
 * 2 Apps (main app & service app) has its own Dockerfile
