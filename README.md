@@ -52,8 +52,7 @@ Kubernetes Overview:
 * Worker Nodes: runs the application containers inside pods
 
 * We can auto scale the pods using Horizontal Pod Autoscaler based on the CPU/memory usage
-* We can manually scale the app by setting the repliacs using kubectl >> `kubectl scale deployment my-app`
---replicas=5
+* We can manually scale the app by setting the repliacs using kubectl >> `kubectl scale deployment my-app --replicas=5`
 
 Service in Kubernetes:  * Provide network identity (DNS & IP) to set of pods
                         * Automatically updates when pods scale up and down
