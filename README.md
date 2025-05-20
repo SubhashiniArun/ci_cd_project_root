@@ -6,19 +6,19 @@ This project deploys the [main_app](https://github.com/SubhashiniArun/flask_ci_c
 
 ##### Main app:
 * navigate to the main app (flask_ci_cd)
-* virtualenv venv
-* source venv/bin/activate
-* pip install -r requirements.txt
-* python run.py
+* `virtualenv venv`
+* `source venv/bin/activate`
+* `pip install -r requirements.txt`
+* `python run.py`
 * check the app's health http://localhost:8000/api/health
 
 
 ##### Service app:
 * navigate to the service app (flask_service_ci_cd)
-* virtualenv venv
-* source venv/bin/activate
-* pip install -r requirements.txt
-* python run.py
+* `virtualenv venv`
+* `source venv/bin/activate`
+* `pip install -r requirements.txt`
+* `python run.py`
 * check the app's health http://localhost:5001/serviceapi/health
 
 ##### RabbitMQ
@@ -52,7 +52,7 @@ Kubernetes Overview:
 * Worker Nodes: runs the application containers inside pods
 
 * We can auto scale the pods using Horizontal Pod Autoscaler based on the CPU/memory usage
-* We can manually scale the app by setting the repliacs using kubectl >> kubectl scale deployment my-app
+* We can manually scale the app by setting the repliacs using kubectl >> `kubectl scale deployment my-app`
 --replicas=5
 
 Service in Kubernetes:  * Provide network identity (DNS & IP) to set of pods
