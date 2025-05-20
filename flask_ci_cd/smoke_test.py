@@ -1,10 +1,11 @@
 import os
 import requests
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
-base_url = os.getenv("APP_URL")
+# base_url = os.getenv("APP_URL")
+base_url = "http://127.0.0.1:62796"
 
 def test_main_app_health():
     print(f"Cheking main app health")

@@ -4,14 +4,13 @@ import time
 
 def process_message(message):
     print(f"processing message: {message}")
+    # Simulating the time taken to process the message
     time.sleep(1)
+    # Transform/Process the message and load to PostgreSQL for later querying
     print(f"processed message: {message}")
 
 def start_worker():
     def callback(ch, method, properties, body):
-        print(f"ch {ch}")
-        print(f"method {method}")
-        print(f"properties {properties}")
         print(f"body {body}")
         message = json.loads(body)
         print(f"Received message: {message}")
